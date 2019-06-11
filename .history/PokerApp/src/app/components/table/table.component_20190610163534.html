@@ -1,0 +1,86 @@
+<div class="body">
+  <p class="pot">Pot: {{this.variables.pot}}</p>
+  <p class="currBet">Current Bet:{{this.variables.currentBet}}</p>
+  <div class="flop">
+    <ngx-flip *ngFor="let card of this.variables.flop" [flip]="card.faceUp" class="card">
+      <div front class="small-card-color">
+        <img class="small-card-icon" src="../../../assets/images/icon.png">
+      </div>
+      <div back>
+        <p *ngIf="card.faceUp" class="cardNo">
+          <font color='{{card.color}}'>{{card.number}}</font>
+        </p>
+        <img *ngIf="card.faceUp" class="suit" src="../../../assets/images/{{card.suit}}.png">
+      </div>
+    </ngx-flip>
+  </div>
+  <div class="hand">
+    <ngx-flip *ngFor="let card of this.variables.human.hand" [flip]="card.faceUp" class="player-card">
+      <div front class="card-color">
+        <img class="card-icon" src="../../../assets/images/icon.png">
+      </div>
+      <div back>
+        <p *ngIf="card.faceUp" class="cardNo2">
+          <font color='{{card.color}}'>{{card.number}}</font>
+        </p>
+        <img *ngIf="card.faceUp" class="suit2" src="../../../assets/images/{{card.suit}}.png">
+      </div>
+    </ngx-flip>
+  </div>
+  <div class="dialog-in" *ngIf="this.easeOut==false">
+    <div class="raise-buttons">
+      <div class='bet'>
+        <img class="chips" src="../../../assets/images/chip3.png">
+        <p>10</p>
+      </div>
+      <div class='bet'>
+        <img class="chips" src="../../../assets/images/chip3.png">
+        <p>50</p>
+      </div>
+      <div class='bet'>
+        <img class="chips" src="../../../assets/images/chip3.png">
+        <p>100</p>
+      </div>
+    </div>
+  </div>
+  <div class="dialog-out" *ngIf="this.easeOut">
+    <div class="raise-buttons">
+      <div class='bet' (click)="raise10()">
+        <img class="chips" src="../../../assets/images/chip3.png">
+        <p>10</p>
+      </div>
+      <div class='bet'(click)="raise50()" *ngIf="this.variables.human.amount>=50">
+        <img class="chips" src="../../../assets/images/chip3.png">
+        <p>50</p>
+      </div>
+      <div class='bet'(click)="raise100()" *ngIf="this.variables.human.amount>=100">
+        <img class="chips" src="../../../assets/images/chip3.png">
+        <p>100</p>
+      </div>
+    </div>
+  </div>
+  <div class="buttons">
+    <button [disabled]="!this.variables.yourTurn || this.variables.human.amount< this.variables.pot" mat-flat-button class="btn" (click)="check()">
+      Check
+    </button>
+    <button [disabled]="!this.variables.yourTurn || this.variables.human.amount<10" mat-flat-button class="btn" (click)="easeInOut()">
+      Raise
+    </button>
+    <button [disabled]="!this.variables.yourTurn" mat-flat-button class="btn" (click)="fold()">
+      Fold
+    </button>
+    <button mat-flat-button class="btn" (click)="leave()">
+      Leave table
+    </button>
+  </div>
+  <p class="winner-hand">The Winner's Hand:</p>
+  <p class="credit">Your credit:{{this.variables.human.amount}}</p>
+  <mat-card class="history">
+    <mat-card-title class="header">History</mat-card-title>
+    <mat-divider></mat-divider>
+    <mat-card-content class='action-list' id="scroll-me"(mouseenter) ="setScroll()"  (mouseleave) ="setScroll()"> 
+      <p class='action' *ngFor='let action of this.variables.history'>{{action}}</p>
+    </mat-card-content>
+  </mat-card>
+  <video hidden="true" #videoElement></video>
+</div>

@@ -1,0 +1,37 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<div class="header-section">
+    <app-header class="header"></app-header>
+    <nav mat-tab-nav-bar>class="nav-bar">
+        <a mat-tab-link [active]="changeTab(0)">
+            {{Tournaments}}
+        </a>
+        <a mat-tab-link [active]="changeTab(1)">
+            {{Rules}}
+        </a>
+        <a mat-tab-link [active]="changeTab(2)">
+            {{About}}
+        </a>
+        <!-- <mat-tab (click)="changeTab(0)" label="Tournaments"></mat-tab>
+        <mat-tab (click)="changeTab(1)" label="Rules"></mat-tab>
+        <mat-tab (click)="changeTab(2)" label="About"></mat-tab> -->
+    </nav>
+    <div class='cash'>
+        <p>
+            {{this.authDataStorage.getLoggedUser().moneyAmount}}
+        </p>
+        <mat-icon class='icon'>account_balance_wallet</mat-icon>
+    </div>
+    <div class='logout'>
+        <p (click)="logOut()">
+            Log out
+        </p>
+    </div>
+
+</div>
+<div class="content">
+    <app-tournaments *ngIf="this.tab==0" [tournaments]="this.games"></app-tournaments>
+    <button *ngIf="this.tab==0" mat-fab class="add-button" matTooltip="New game" (click)=addGame()>
+        <mat-icon>add</mat-icon>
+    </button>
+    <app-rules *ngIf="this.tab==1"></app-rules>
+</div>

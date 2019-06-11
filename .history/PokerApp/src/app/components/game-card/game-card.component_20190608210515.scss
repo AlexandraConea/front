@@ -1,0 +1,52 @@
+@import "../../../assets/home-theme.scss";
+
+.card{
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    height:370px;
+    width:400px;
+}
+
+.image{
+    height:250px;
+    width: 400px;
+}
+.button {
+    margin-left: 170px;
+    margin-top: 10px;
+    font-size: 15px;
+    color: #fff;
+    font-family: "Russo One";
+    line-height: 1.2;
+    text-transform: uppercase;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 25px;
+    background-color: $dark-blue-hover;
+    border-radius: 3px;
+    cursor: pointer;
+  
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
+  }
+  
+  .button:hover {
+      background-color: $dark-blue-hover;
+  }
+  
+  .fee{
+      color:$dark-blue-hover;
+      font-family: "Russo One";
+      font-size: 15px;
+      z-index:1000;
+      margin-top: -5%;
+      position: inherit;
+  }

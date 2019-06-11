@@ -1,0 +1,33 @@
+@import "../../../assets/home-theme.scss";
+.rules{
+    width:100%;
+}
+.title{
+    color:$dark-blue;
+    font-size: 35px;
+    font-family: "Russo One";
+    text-decoration-line: underline;
+    text-align: center;
+    padding-bottom: 50px;
+}
+
+.rule-content{
+    margin-left:100px;
+    width:100%;
+}
+
+.header{
+    color:$dark-blue;
+    font-size: 30px;
+    font-family: "Russo One";
+    margin-left: 10%;
+    margin-bottom: 3%;
+}
+
+.group{
+    color:$blue;
+    font-size: 25px;
+    font-family: "Russo One";
+    margin-left: 2%;
+    margin-bottom: 5%;
+}

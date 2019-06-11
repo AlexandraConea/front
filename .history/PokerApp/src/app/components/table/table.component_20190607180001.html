@@ -1,0 +1,69 @@
+<div class="body">
+  <p class="pot">Pot: {{this.variables.pot}}</p>
+  <p class="currBet">Current Bet:{{this.variables.currentBet}}</p>
+  <div class="flop">
+    <ngx-flip *ngFor="let card of this.variables.flop" [flip]="card.faceUp" class="card">
+      <div front class="small-card-color">
+        <img class="small-card-icon" src="../../../assets/images/icon.png">
+      </div>
+      <div back>
+        <p *ngIf="card.faceUp" class="cardNo">
+          <font color='{{card.color}}'>{{card.number}}</font>
+        </p>
+        <img *ngIf="card.faceUp" class="suit" src="../../../assets/images/{{card.suit}}.png">
+      </div>
+    </ngx-flip>
+  </div>
+  <div class="hand">
+    <ngx-flip *ngFor="let card of this.variables.human.hand" [flip]="card.faceUp" class="player-card">
+      <div front class="card-color">
+        <img class="card-icon" src="../../../assets/images/icon.png">
+      </div>
+      <div back>
+        <p *ngIf="card.faceUp" class="cardNo2">
+          <font color='{{card.color}}'>{{card.number}}</font>
+        </p>
+        <img *ngIf="card.faceUp" class="suit2" src="../../../assets/images/{{card.suit}}.png">
+      </div>
+    </ngx-flip>
+  </div>
+  <div class="dialog-in" *ngIf="this.easeOut==false">
+    <form class="form">
+      <mat-form-field class="amount">
+        <input matInput placeholder="Amount">
+      </mat-form-field>
+    </form>
+  </div>
+  <div class="dialog-out" *ngIf="this.easeOut">
+    <form class="form">
+      <mat-form-field class="amount">
+        <input [(ngModel)]="playerBet" name='playerBet' type="text" matInput placeholder="Amount">
+      </mat-form-field>
+    </form>
+  </div>
+  <div class="buttons">
+    <button [disabled]="true" mat-flat-button class="btn">
+      Call
+    </button>
+    <button [disabled]="!this.variables.yourTurn" mat-flat-button class="btn" (click)="easeInOut()">
+      Raise
+    </button>
+    <button [disabled]="!this.variables.yourTurn" mat-flat-button class="btn" (click)="fold()">
+      Fold
+    </button>
+    <button [disabled]="!this.variables.yourTurn" mat-flat-button class="btn" (click)="check()">
+      Check
+    </button>
+    <button mat-flat-button class="btn" (click)="leave()">
+      Leave table
+    </button>
+  </div>
+  <mat-card class="history">
+    <mat-card-title class="header">History</mat-card-title>
+    <mat-divider></mat-divider>
+    <mat-card-content class='action-list'>
+      <p class='action' *ngFor='let action of this.variables.history'>{{action}}</p>
+    </mat-card-content>
+  </mat-card>
+  <video hidden="true" #videoElement></video>
+</div>

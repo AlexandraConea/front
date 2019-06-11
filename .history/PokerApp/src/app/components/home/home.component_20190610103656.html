@@ -1,0 +1,26 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<div class="header-section">
+    <app-header class="header"></app-header>
+    <mat-tab-group class="nav-bar">
+        <mat-tab (click)="this.tab=0" label="Tournaments"></mat-tab>
+        <mat-tab (click)="this.tab=1" label="Rules"></mat-tab>
+        <mat-tab (click)="this.tab=2" label="About"></mat-tab>
+    </mat-tab-group>
+    <div class='cash'>
+        <p>
+            {{this.authDataStorage.getLoggedUser().moneyAmount}}
+        </p>
+        <mat-icon class='icon'>account_balance_wallet</mat-icon>
+    </div>
+    <div class='logout'>
+        <p (click)="logOut()">
+            Log out
+        </p>
+    </div>
+    <div class="tournaments">
+        <app-tournaments [tournaments]="this.games"></app-tournaments>
+        <button mat-fab class="add-button" matTooltip="New game" (click)=addGame()>
+            <mat-icon>add</mat-icon>
+        </button>
+    </div>
+</div>
